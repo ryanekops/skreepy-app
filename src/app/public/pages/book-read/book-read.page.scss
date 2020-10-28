@@ -1,0 +1,75 @@
+ion-toolbar {
+    --background: transparent;
+    background-color: transparent;
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.__contentDetail {
+    padding: 40px 40px 80px 40px;
+    position: relative;
+
+    h3 {
+        margin-top: 0;
+        font-size: 18pt;
+        line-height: 25pt;
+        margin-bottom: 15px;
+        text-align: center;
+    }
+
+    p {
+        font-size: 11pt;
+        color: #999;
+        margin: 0;
+        text-align: center;
+    }
+
+    .__lineText {
+        text-align: center;
+        margin: 30px 0 20px;
+        font-size: 20pt;
+        letter-spacing: 6px;
+        color: var(--ion-color-danger);
+        font-weight: bold;
+    }
+
+}
+
+.__jumpScare {
+    position: fixed;
+    bottom: 0;
+    width: 200px;
+    left: calc(50% - 100px);
+    animation: 2s bottomToTop infinite;
+}
+
+@-webkit-keyframes bottomToTop {
+    0% {
+        transform: translateY(0%);
+    }
+
+    50% {
+        transform: translateY(-160%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+
+}
+
+@keyframes bottomToTop {
+    0% {
+        transform: translateY(0%);
+    }
+
+    50% {
+        transform: translateY(-160%);
+    }
+
+    100% {
+        transform: translateY(0%);
+    }
+
+}

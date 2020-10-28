@@ -1,0 +1,45 @@
+<ion-header #toolbarAccount class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      <span class="__fontBloodthirt">Akun</span>
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="signOut()">
+        <ion-icon slot="icon-only" name="log-out-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content scrollEvents="true" [appHideHeader]="toolbarAccount" [fullscreen]="true">
+  <div class="__headerAccount">
+    <div class="__img" [ngStyle]="{backgroundImage:'url('+userData.photo+')'}"></div>
+    <h3>{{ userData.name }}</h3>
+    <p>{{ userData.email }}</p>
+  </div>
+  <div class="__lineAccount"></div>
+  <div class="__infoAccount">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="6">
+          <div class="__boxInfo">
+            <div class="__in">
+              <div class="__number">{{ userData.reading }}</div>
+              <div class="__text">Membaca</div>
+            </div>
+
+          </div>
+        </ion-col>
+        <ion-col size="6">
+          <div class="__boxInfo">
+            <div class="__in">
+              <div class="__number">{{ userData.bookmark }}</div>
+              <div class="__text">Bookmark</div>
+            </div>
+
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

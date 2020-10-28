@@ -1,0 +1,70 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button>
+        <ion-icon slot="icon-only" name="search-outline"></ion-icon>
+      </ion-button>
+
+    </ion-buttons>
+    <ion-title>
+      <ion-searchbar class="__search-custom" showCancelButton="focus" #autofocus (ionChange)="searchStory()"
+        [(ngModel)]="search" placeholder="Cari cerita..."></ion-searchbar>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #scrollSEarchStory [fullscreen]="true">
+  <div class="__search-none" *ngIf="search == ''">
+    <div class="__in">
+      <img src="assets/images/undraw_Search_1px8.svg" alt="" />
+      <div class="__text-search">Tulis apa yang kamu ingin cari...</div>
+    </div>
+  </div>
+
+  <div class="__search-none" *ngIf="!loadingPage && not_found && search != ''">
+    <div class="__in">
+      <img src="assets/images/undraw_Letter_re_8m03.svg" alt="" />
+      <div class="__text-search">Pencarian <b>'{{ search }}'</b> tidak ditemukan</div>
+    </div>
+  </div>
+
+  <div class="__loadingPage" *ngIf="loadingPage">
+    <div class="item loading-2">
+      <div class="spinner">
+        <div class="circle circle-1">
+          <div class="circle-inner"></div>
+        </div>
+        <div class="circle circle-2">
+          <div class="circle-inner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <virtual-scroller #scrollSearch [items]="dataSearch" [enableUnequalChildrenSizes]="true"
+    [parentScroll]="scrollSEarchStory.el.shadowRoot.querySelector('main')" [modifyOverflowStyleOfParentScroll]="false"
+    [checkResizeInterval]="0" [bufferAmount]="6" [childHeight]="0.000001"
+    (vsUpdate)="scrollSearch.viewPortItems = $event">
+    <ion-grid>
+      <ion-row>
+        <ng-container *ngFor="let item of scrollSearch.viewPortItems;let i = index">
+          <ion-col size="6" size-lg="3" [routerLink]="['/book-detail',item.uniqueID]">
+            <div class="__previewBook">
+              <div class="__imgBook" [ngStyle]="{backgroundImage:'url('+item.image+')'}">
+                <div class="__view">
+                  <ion-icon slot="start" name="eye-outline"></ion-icon> {{ item.info.viewer }}
+                </div>
+              </div>
+              <div class="__textBook">
+                <h3 class="__fontBaskervilleRegular">{{ item.title }}</h3>
+                <div class="__infoBook">
+                  <div class="__by">by: {{ item.info.author }}</div>
+                </div>
+              </div>
+            </div>
+          </ion-col>
+        </ng-container>
+      </ion-row>
+    </ion-grid>
+  </virtual-scroller>
+</ion-content>

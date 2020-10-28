@@ -1,0 +1,11 @@
+ion-tab-bar {
+    height: 60px;
+    --border: none;
+}
+
+ion-tab-button {
+    --color: #ffffff;
+    --color-focused: var(--ion-color-danger-tint);
+    --color-selected: var(--ion-color-danger-tint);
+
+}

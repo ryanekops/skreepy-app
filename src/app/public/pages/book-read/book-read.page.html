@@ -1,0 +1,28 @@
+<ion-header #toolbarRead class="ion-no-border">
+  <ion-toolbar [ngStyle]="{backgroundImage:'url('+storyRead.image+')'}">
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title></ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #scrollRead scrollEvents="true" (ionScroll)="onScroll($event)" [appHideHeader]="toolbarRead"
+  [fullscreen]="true">
+  <div class="__contentDetail">
+    <h3 class="__fontBaskervilleBold">{{ storyRead.title }}</h3>
+    <p>by: {{ storyRead.info.author }}</p>
+    <div class="__lineText">***</div>
+    <div class="__readBook __fontBaskervilleRegular" [innerHTML]="storyRead.content"></div>
+  </div>
+
+  <div class="__jumpScare __animTopToBottom" *ngIf="jumpScare">
+    <img [src]="storyRead.jumpScare.image" alt="" />
+  </div>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button color="danger" (click)="pin()">
+      <ion-icon name="save-outline"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

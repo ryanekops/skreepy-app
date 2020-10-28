@@ -1,0 +1,121 @@
+<ion-header #toolbarDetail class="ion-no-border">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+    <ion-title></ion-title>
+    <ion-buttons slot="end" *ngIf="!loadingPage && resultDetailStory.length != 0">
+      <ion-button (click)="bookmark(resultDetailStory)">
+        <ion-icon slot="icon-only" name="bookmark-outline" *ngIf="resultDetailStory.info.bookmark != null"></ion-icon>
+        <ion-icon slot="icon-only" color="danger" name="bookmark" *ngIf="resultDetailStory.info.bookmark == null">
+        </ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content scrollEvents="true" [appHideHeader]="toolbarDetail" [appFadeHeader]="footerDetail" [fullscreen]="true">
+  <div class="__loadingPage" *ngIf="loadingPage">
+    <div class="item loading-2">
+      <div class="spinner">
+        <div class="circle circle-1">
+          <div class="circle-inner"></div>
+        </div>
+        <div class="circle circle-2">
+          <div class="circle-inner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <ng-container *ngIf="!loadingPage && resultDetailStory.length != 0">
+    <div class="__headerDetail">
+      <div class="__imgDetail" [ngStyle]="{backgroundImage:'url('+resultDetailStory.image+')'}">
+      </div>
+    </div>
+    <div class="__contentDetail">
+      <h3 class="__fontBaskervilleBold">{{ resultDetailStory.title }}</h3>
+      <div class="__infoDetail">
+        <p>by: {{ resultDetailStory.info.author }}</p>
+        <p>
+          <ion-icon slot="start" name="eye-outline"></ion-icon> {{ resultDetailStory.info.viewer }}
+        </p>
+      </div>
+
+      <div class="__line"></div>
+      <div class="__titleRreview">Potongan Cerita:</div>
+      <div class="__readSinopsis __fontBaskervilleRegular" [innerHTML]="resultDetailStory.content | slice:0:400">
+      </div>
+    </div>
+
+    <!-- Related Story -->
+    <ng-container>
+      <div class="__titleRelated">
+        Cerita lainnya:
+      </div>
+      <div class="__slidesRelated">
+        <ion-slides [options]="slidesOptions">
+          <ng-container *ngIf="loadingRelated">
+            <ion-slide>
+              <div class="__loadingSlide">
+                <div class="__image"></div>
+                <div class="__title"></div>
+                <div class="__author"></div>
+              </div>
+            </ion-slide>
+            <ion-slide>
+              <div class="__loadingSlide">
+                <div class="__image"></div>
+                <div class="__title"></div>
+                <div class="__author"></div>
+              </div>
+            </ion-slide>
+            <ion-slide>
+              <div class="__loadingSlide">
+                <div class="__image"></div>
+                <div class="__title"></div>
+                <div class="__author"></div>
+              </div>
+            </ion-slide>
+          </ng-container>
+          <ng-container *ngIf="!loadingRelated && resultRelatedStory.length != 0">
+            <ion-slide *ngFor="let item of resultRelatedStory">
+              <div class="__previewBook" [routerLink]="['/book-detail', item.uniqueID]">
+                <div class="__imgBook" [ngStyle]="{backgroundImage:'url('+item.image+')'}">
+                  <div class="__view">
+                    <ion-icon slot="start" name="eye-outline"></ion-icon> {{ item.info.viewer }}
+                  </div>
+                </div>
+                <div class="__textBook">
+                  <h3 class="__fontBaskervilleRegular">{{ item.title }}</h3>
+                  <div class="__infoBook">
+                    <div class="__by">by: {{ item.info.author }}</div>
+                  </div>
+                </div>
+              </div>
+            </ion-slide>
+          </ng-container>
+
+
+        </ion-slides>
+      </div>
+    </ng-container>
+  </ng-container>
+
+
+
+</ion-content>
+<ion-footer #footerDetail>
+  <div class="__actionFooter" *ngIf="!loadingPage && resultDetailStory.length != 0">
+    <div class="__share" (click)="share(resultDetailStory)">
+      <ion-icon slot="icon-only" name="share-social-outline"></ion-icon>
+    </div>
+
+    <div class="__next" (click)="routerRead('/book-read', resultDetailStory)" *ngIf="!persiapanIklan">
+      <ion-icon class="admob" name="megaphone-outline" *ngIf="admobReady"></ion-icon> Baca Sekarang
+      <ion-icon name="arrow-forward-outline">
+      </ion-icon>
+    </div>
+
+    <div class="__next" *ngIf="persiapanIklan"><span class="__animSpan">Memuat Cerita...</span></div>
+  </div>
+</ion-footer>

@@ -1,0 +1,50 @@
+<ion-header #toolbarBookmark class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      <span class="__fontBloodthirt">Bookmark</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #scrollBookmark scrollEvents="true" [appHideHeader]="toolbarBookmark" [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" *ngIf="!loadingPage && scrollBookmark.el.scrollTop == 0">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="__loadingPage" *ngIf="loadingPage">
+    <div class="item loading-2">
+      <div class="spinner">
+        <div class="circle circle-1">
+          <div class="circle-inner"></div>
+        </div>
+        <div class="circle circle-2">
+          <div class="circle-inner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="__bookmarkNone" *ngIf="!loadingPage && resultBookmark.length == 0">
+    <div class="__in">
+      <img src="assets/images/undraw_a_moment_to_relax_bbpa.svg" alt="" />
+    </div>
+  </div>
+  <virtual-scroller #scrollBookmarkData [items]="resultBookmark" [enableUnequalChildrenSizes]="true"
+    [parentScroll]="scrollBookmark.el.shadowRoot.querySelector('main')" [modifyOverflowStyleOfParentScroll]="false"
+    [checkResizeInterval]="0" [bufferAmount]="6" [childHeight]="0.000001"
+    (vsUpdate)="scrollBookmarkData.viewPortItems = $event">
+    <ion-grid>
+      <ion-row>
+        <ng-container *ngFor="let item of scrollBookmarkData.viewPortItems;let i = index">
+          <ion-col size="4" size-lg="4" [routerLink]="['/book-detail',item.uniqueID]">
+            <div class="__previewBookmark">
+              <div class="__imgBook" [ngStyle]="{backgroundImage:'url('+item.image+')'}">
+              </div>
+            </div>
+          </ion-col>
+        </ng-container>
+      </ion-row>
+    </ion-grid>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="moreData($event)">
+      <ion-infinite-scroll-content loadingSpinner="dots"></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </virtual-scroller>
+</ion-content>

@@ -1,0 +1,294 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+// Font
+@font-face {
+    font-family: 'BaskervilleRegular';
+    font-style: normal;
+    src: url('./assets/fonts/BaskervilleRegular.ttf');
+}
+
+@font-face {
+    font-family: 'BaskervilleBold';
+    font-style: bold;
+    src: url('./assets/fonts/BaskervilleBold.ttf');
+}
+
+@font-face {
+    font-family: 'BloodThirst';
+    font-style: normal;
+    src: url('./assets/fonts/BloodThirst.ttf');
+}
+
+.__fontBloodthirt {
+    font-family: 'BloodThirst';
+}
+
+.__fontBaskervilleRegular {
+    font-family: 'BaskervilleRegular';
+}
+
+.__fontBaskervilleBold {
+    font-family: 'BaskervilleBold';
+}
+
+.ion-page {
+
+    background: #000000 !important;
+
+    &::before {
+        position: fixed;
+        content: "";
+        top: 0;
+        right: 0;
+        left: 0;
+        bottom: 0;
+        background-color: transparent;
+        z-index: 99;
+        transition: all .300s ease-in-out;
+        visibility: hidden;
+    }
+
+    &.backdrop {
+        &::before {
+            visibility: visible;
+            background-color: rgba(0, 0, 0, 0.52);
+        }
+    }
+}
+
+.__alert-custom {
+    .alert-wrapper {
+        border-radius: 10px;
+        box-shadow: none;
+    }
+
+    .alert-button {
+        color: var(--ion-color-danger);
+
+        &.cancel {
+            color: #909090;
+        }
+    }
+}
+
+//Loading
+.__my-loading {
+    --spinner-color: var(--ion-color-danger);
+    --min-width: 230px;
+    --backdrop-opacity: 0.7;
+
+    .loading-wrapper {
+        box-shadow: none;
+        border-radius: 10px;
+    }
+
+    .loading-content {
+        font-size: 13pt;
+    }
+
+}
+
+ion-content.__bgImage {
+    --background: #121212 url('~/assets/images/bgLogin.jpg') no-repeat center right / cover;
+}
+
+// Overlaps Status Bar
+ion-toolbar {
+    padding-top: calc(35px + var(--ion-safe-area-top, 0px)) !important;
+}
+
+ion-title {
+    text-align: center;
+    --color: var(--ion-color-danger);
+}
+
+// Refresher
+ion-refresher {
+    padding-top: 35px !important;
+}
+
+// Infinity Custom
+ion-infinite-scroll-content {
+    ion-spinner {
+        transform: scale(1.9);
+    }
+}
+
+// Searchbar
+.__search-custom {
+    padding-inline-end: 0px !important;
+    padding-inline-start: 0px !important;
+    text-align: left;
+
+    ion-icon {
+        display: none;
+    }
+
+    .searchbar-input {
+        padding-inline-start: 15px;
+    }
+}
+
+// Loading Page
+.__loadingPage {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    top: 91px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1;
+    background-color: var(--ion-background-color);
+
+    .loading-2 .spinner * {
+        box-sizing: border-box;
+    }
+
+    .loading-2 .spinner {
+        display: inline-block;
+        animation-name: anim-spinner;
+        animation-duration: 0.7s;
+        animation-iteration-count: infinite;
+        animation-timing-function: linear;
+    }
+
+    .loading-2 .spinner .circle {
+        width: 3em;
+        height: 1.5em;
+        overflow: hidden;
+    }
+
+    .loading-2 .spinner .circle-inner {
+        transform: rotate(45deg);
+        border-radius: 50%;
+        border: 0.3em solid var(--ion-color-danger);
+        border-right: 0.3em solid transparent;
+        border-bottom: 0.3em solid transparent;
+        width: 100%;
+        height: 200%;
+        animation-name: anim-circle-1;
+        animation-duration: 0.7s;
+        animation-iteration-count: infinite;
+        animation-direction: alternate;
+        animation-timing-function: cubic-bezier(0.25, 0.1, 0.5, 1);
+    }
+
+    .loading-2 .spinner .circle-2 {
+        transform: rotate(180deg);
+    }
+
+    .loading-2 .spinner .circle-2 .circle-inner {
+        animation-name: anim-circle-2;
+    }
+}
+
+@keyframes anim-circle-1 {
+    from {
+        transform: rotate(60deg);
+    }
+
+    to {
+        transform: rotate(205deg);
+    }
+}
+
+@keyframes anim-circle-2 {
+    from {
+        transform: rotate(30deg);
+    }
+
+    to {
+        transform: rotate(-115deg);
+    }
+}
+
+@keyframes anim-spinner {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// Read Book
+.__readBook {
+    text-indent: 60px;
+    line-height: 35px;
+    font-size: 18px;
+    text-align: justify;
+    color: #DDDDDD;
+
+    P {
+        margin-block-start: 0em;
+        margin-block-end: 0em;
+        text-indent: 60px;
+        line-height: 40px;
+        font-size: 18px;
+        text-align: justify;
+    }
+
+    blockquote {
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0;
+        margin-inline-end: 0;
+        background: #212121;
+        padding: 20px;
+        border-left: 3px solid var(--ion-color-danger);
+    }
+}
+
+.__readSinopsis {
+    line-height: 35px;
+    font-size: 18px;
+    text-align: justify;
+    color: #DDDDDD;
+
+    P {
+        margin-block-start: 0em;
+        margin-block-end: 0em;
+        line-height: 40px;
+        font-size: 18px;
+        text-align: justify;
+    }
+
+    blockquote {
+        margin-block-start: 1em;
+        margin-block-end: 1em;
+        margin-inline-start: 0;
+        margin-inline-end: 0;
+        background: #212121;
+        padding: 20px;
+        border-left: 3px solid var(--ion-color-danger);
+    }
+
+}

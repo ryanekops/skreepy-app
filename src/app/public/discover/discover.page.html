@@ -1,0 +1,53 @@
+<ion-header #toolbarDiscover class="ion-no-border">
+  <ion-toolbar>
+    <ion-title>
+      <span class="__fontBloodthirt">Discover</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content #scrollStory scrollEvents="true" [appHideHeader]="toolbarDiscover" [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="doRefresh($event)" *ngIf="!loadingPage && scrollStory.el.scrollTop == 0">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <div class="__loadingPage" *ngIf="loadingPage">
+    <div class="item loading-2">
+      <div class="spinner">
+        <div class="circle circle-1">
+          <div class="circle-inner"></div>
+        </div>
+        <div class="circle circle-2">
+          <div class="circle-inner"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <virtual-scroller #scroll [items]="resultStory" [enableUnequalChildrenSizes]="true"
+    [parentScroll]="scrollStory.el.shadowRoot.querySelector('main')" [modifyOverflowStyleOfParentScroll]="false"
+    [checkResizeInterval]="0" [bufferAmount]="6" [childHeight]="0.000001" (vsUpdate)="scroll.viewPortItems = $event">
+    <ion-grid>
+      <ion-row>
+        <ng-container *ngFor="let item of scroll.viewPortItems;let i = index">
+          <ion-col size="6" size-lg="3" [routerLink]="['/book-detail',item.uniqueID]">
+            <div class="__previewBook">
+              <div class="__imgBook" [ngStyle]="{backgroundImage:'url('+item.image+')'}">
+                <div class="__view">
+                  <ion-icon slot="start" name="eye-outline"></ion-icon> {{ item.info.viewer }}
+                </div>
+              </div>
+              <div class="__textBook">
+                <h3 class="__fontBaskervilleRegular">{{ item.title }}</h3>
+                <div class="__infoBook">
+                  <div class="__by">by: {{ item.info.author }}</div>
+                </div>
+              </div>
+            </div>
+          </ion-col>
+        </ng-container>
+      </ion-row>
+    </ion-grid>
+    <ion-infinite-scroll threshold="100px" (ionInfinite)="moreData($event)">
+      <ion-infinite-scroll-content loadingSpinner="dots"></ion-infinite-scroll-content>
+    </ion-infinite-scroll>
+  </virtual-scroller>
+</ion-content>

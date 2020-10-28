@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "821537479174",
+    "firebase_url": "https://horror-app-9df82.firebaseio.com",
+    "project_id": "horror-app-9df82",
+    "storage_bucket": "horror-app-9df82.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:821537479174:android:d8785bbef5711cbfe90187",
+        "android_client_info": {
+          "package_name": "com.horror.house"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "821537479174-aajc0uries86b2460o5n9vm5nnu9qonj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.horror.house",
+            "certificate_hash": "2545d81f530219616ffe01ac4ae4bfcc4f1c3213"
+          }
+        },
+        {
+          "client_id": "821537479174-qed4v531fbd70j9f3g90nga36dn764f2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDhhUrUT2bK_O_M81UflmRMpC0i8wsp34A"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "821537479174-qed4v531fbd70j9f3g90nga36dn764f2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
