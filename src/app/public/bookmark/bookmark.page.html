@@ -34,7 +34,7 @@
     <ion-grid>
       <ion-row>
         <ng-container *ngFor="let item of scrollBookmarkData.viewPortItems;let i = index">
-          <ion-col size="4" size-lg="4" [routerLink]="['/book-detail',item.uniqueID]">
+          <ion-col size="4" size-lg="4" [routerLink]="['/book-detail',item.slug]">
             <div class="__previewBookmark">
               <div class="__imgBook" [ngStyle]="{backgroundImage:'url('+item.image+')'}">
               </div>

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "821537479174-4q93nr087cgmh75fbstvgf958nhdpbul.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.horror.house",
+            "certificate_hash": "818728a07f8a80f085653422178413e05f70fc23"
+          }
+        },
+        {
           "client_id": "821537479174-aajc0uries86b2460o5n9vm5nnu9qonj.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

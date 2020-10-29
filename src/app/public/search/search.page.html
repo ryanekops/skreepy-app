@@ -48,7 +48,7 @@
     <ion-grid>
       <ion-row>
         <ng-container *ngFor="let item of scrollSearch.viewPortItems;let i = index">
-          <ion-col size="6" size-lg="3" [routerLink]="['/book-detail',item.uniqueID]">
+          <ion-col size="6" size-lg="3" [routerLink]="['/book-detail',item.slug]">
             <div class="__previewBook">
               <div class="__imgBook" [ngStyle]="{backgroundImage:'url('+item.image+')'}">
                 <div class="__view">

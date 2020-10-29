@@ -17,6 +17,10 @@ const routes: Routes = [
         loadChildren: () => import('../public/search/search.module').then(m => m.SearchPageModule)
       },
       {
+        path: 'wall',
+        loadChildren: () => import('../public/social/social.module').then(m => m.SocialPageModule)
+      },
+      {
         path: 'bookmark',
         loadChildren: () => import('../public/bookmark/bookmark.module').then(m => m.BookmarkPageModule)
       },

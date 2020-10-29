@@ -127,17 +127,14 @@ export class AppComponent {
 
     if(USER){
       if(event == 'pause'){
-        this.userService.pauseUser(USER.token, {sessionID: USER.sessionID, logout: false}).then(async (e:any)=>{
+        this.userService.pauseUser(USER.token, {logout: false}).then(async (e:any)=>{
           console.log(e);
         }).catch(async (err)=>{
           console.log(err);
         })
       }else if(event == 'resume'){
-        this.userService.resumeUser(USER.token, {sessionID: USER.sessionID}).then(async (e:any)=>{
-          let res = JSON.parse(e.data);
-          USER.sessionID = res.data.payload.sessionID;
-
-          this.storage.set('USER', USER);
+        this.userService.resumeUser(USER.token, {}).then(async (e:any)=>{
+          console.log(e);
         }).catch(async (err)=>{
           console.log(err);
         }) 

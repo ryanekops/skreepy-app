@@ -239,7 +239,7 @@ export class BookDetailPage implements OnInit {
 
       let id = this.activatedRoute.snapshot.paramMap.get('id');
 
-      this.storyService.seeStory(USER.token, {storyUid: id, sessionUid: USER.sessionID}).then(async (e:any)=>{
+      this.storyService.seeStory(USER.token, {story_slug: id}).then(async (e:any)=>{
         let res = JSON.parse(e.data);
         if(res.status == 200){
           this.resultDetailStory.info.viewer = this.resultDetailStory.info.viewer + 1;
@@ -465,7 +465,7 @@ export class BookDetailPage implements OnInit {
             this.resultDetailStory.info.bookmark = null;
           }
 
-          this.bookmarkService.bookmarkStory(USER.token, {storyUid: data.uniqueID, lastBook: convertDate}).then(async (e:any)=>{
+          this.bookmarkService.bookmarkStory(USER.token, {story_slug: data.slug, lastBook: convertDate}).then(async (e:any)=>{
             this.loadingBookmark = false;
             let res = JSON.parse(e.data);
             const toast = await this.toastCtrl.create({

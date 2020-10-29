@@ -79,7 +79,7 @@
           </ng-container>
           <ng-container *ngIf="!loadingRelated && resultRelatedStory.length != 0">
             <ion-slide *ngFor="let item of resultRelatedStory">
-              <div class="__previewBook" [routerLink]="['/book-detail', item.uniqueID]">
+              <div class="__previewBook" [routerLink]="['/book-detail', item.slug]">
                 <div class="__imgBook" [ngStyle]="{backgroundImage:'url('+item.image+')'}">
                   <div class="__view">
                     <ion-icon slot="start" name="eye-outline"></ion-icon> {{ item.info.viewer }}

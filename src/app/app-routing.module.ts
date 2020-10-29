@@ -33,6 +33,10 @@ const routes: Routes = [
     path: 'book-read',
     loadChildren: () => import('./public/pages/book-read/book-read.module').then( m => m.BookReadPageModule)
   },
+  {
+    path: 'social',
+    loadChildren: () => import('./public/social/social.module').then( m => m.SocialPageModule)
+  },
 ];
 @NgModule({
   imports: [
@@ -54,7 +58,7 @@ export class AppRoutingModule {
   async initApp() {
     let USER = await this.storage.get("USER");
     if (USER) {
-      this.navCtrl.navigateRoot("/tabs");
+      this.navCtrl.navigateRoot("/tabs/discover");
     } else {
       this.navCtrl.navigateRoot("/login");
     }
